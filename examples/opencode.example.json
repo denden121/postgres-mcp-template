@@ -1,0 +1,68 @@
+{
+  "mcp": {
+    "servers": {
+      "safe-sales": {
+        "type": "local",
+        "command": [
+          "/ABSOLUTE/PATH/postgres-mcp-template/start-mcp.sh"
+        ],
+        "codemode": false
+      }
+    }
+  },
+  "$schema": "https://opencode.ai/config.json",
+  "permissions": [
+    {
+      "action": "*",
+      "resource": "*",
+      "effect": "deny"
+    },
+    {
+      "action": "safe_sales_sales_summary",
+      "resource": "*",
+      "effect": "allow"
+    },
+    {
+      "action": "safe_sales_top_products",
+      "resource": "*",
+      "effect": "allow"
+    },
+    {
+      "action": "question",
+      "resource": "*",
+      "effect": "allow"
+    }
+  ],
+  "policies": [
+    {
+      "action": "tool.use",
+      "resource": "*",
+      "effect": "deny"
+    },
+    {
+      "action": "tool.use",
+      "resource": "safe_sales_sales_summary:*",
+      "effect": "allow"
+    },
+    {
+      "action": "tool.use",
+      "resource": "safe_sales_top_products:*",
+      "effect": "allow"
+    },
+    {
+      "action": "tool.use",
+      "resource": "question:*",
+      "effect": "allow"
+    },
+    {
+      "action": "mcp.use",
+      "resource": "*",
+      "effect": "deny"
+    },
+    {
+      "action": "mcp.use",
+      "resource": "safe-sales",
+      "effect": "allow"
+    }
+  ]
+}
